@@ -1,4 +1,4 @@
-const { default: TaskForm } = require("@/app/(components)/TaskForm");
+import TaskForm from "../../(components)/TaskForm.jsx";
 
 const Task = ({ params }) => {
   return <TaskForm />;

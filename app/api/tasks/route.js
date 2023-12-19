@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import Task from "../(models)/Task";
+import Task from "../../(models)/Task";
 
 export async function POST(req) {
   try {

@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const TaskForm = () => {
+  const router = useRouter();
+
   const handleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -14,14 +16,27 @@ const TaskForm = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("submitted");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/tasks", {
+      method: "POST",
+      body: JSON.stringify({ formData }),
+      "content-type": "application/json",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to create task");
+    }
+
+    router.refresh();
+    router.push("/");
   };
 
   const startingTaskData = {
     title: "",
     description: "",
-    category: "Hardware problem",
+    category: "Low",
     priority: 1,
     progress: 0,
     status: "not started",
@@ -64,9 +79,9 @@ const TaskForm = () => {
           value={formData.category}
           onChange={handleChange}
         >
-          <option value="Hardware problem">Hardware problem</option>
-          <option value="Software problem">Software problem</option>
-          <option value="Project">Project</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
         </select>
 
         <label>Priority</label>
