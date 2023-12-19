@@ -1,5 +1,7 @@
+const { default: TaskForm } = require("@/app/(components)/TaskForm");
+
 const Task = ({ params }) => {
-  return <div>Task {params.id}</div>;
+  return <TaskForm />;
 };
 
 export default Task;
