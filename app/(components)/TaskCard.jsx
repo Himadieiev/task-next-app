@@ -26,7 +26,7 @@ const TaskCard = ({ task }) => {
       <div className="flex mb-3">
         <PriorityDisplay priority={task.priority} />
         <div className="ml-auto">
-          <DeleteBlock />
+          <DeleteBlock id={task._id} />
         </div>
       </div>
       <h4>{task.title}</h4>
